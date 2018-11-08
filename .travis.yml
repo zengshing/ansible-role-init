@@ -6,7 +6,7 @@ services:
 
 env:
   global:
-    - ROLE_NAME: common
+    - ROLE_NAME: init
   matrix:
     - MOLECULE_DISTRO: centos7
 
@@ -15,7 +15,7 @@ install:
 
 before_script:
   # Use actual Ansible Galaxy role name for the project directory.
-  - mv $ROLE_NAME steve.$ROLE_NAME
+  - mv ansible-role-$ROLE_NAME steve.$ROLE_NAME
   - cd steve.$ROLE_NAME
 
 script:
