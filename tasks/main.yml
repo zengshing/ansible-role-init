@@ -1,0 +1,31 @@
+---
+- name: variables | Set variables.
+  include_tasks: variables.yml
+
+- name: hostname | Set hostname.
+  include_tasks: hostname.yml
+
+- name: password | Set root password
+  include_tasks: password.yml
+  when: password_reset == true
+
+- name: slogen | set slogen.
+  include_tasks: slogen.yml
+
+- name: repo | Set source repo.
+  include_tasks: repo.yml
+
+- name: ssh | Set ssh.
+  include_tasks: ssh.yml
+
+- name: history | Set history.
+  include_tasks: history.yml
+
+- name: snmp | Set snmp service.
+  include_tasks: snmp.yml
+
+- name: module | Set module.
+  include_tasks: module.yml
+
+- name: optimize | Optimize system.
+  include_tasks: optimize.yml

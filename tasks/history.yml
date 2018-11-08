@@ -1,0 +1,13 @@
+---
+- name: optimize history
+  blockinfile:
+    path: /etc/profile
+    marker: "# history setting"
+    block: |
+      export HISTFILESIZE=1000000000
+      export HISTSIZE=1000000
+      export PROMPT_COMMAND="history -a"
+      export HISTTIMEFORMAT="%Y-%m-%d_%H:%M:%S"
+
+- name: Execute profile
+  shell: "source /etc/profile"

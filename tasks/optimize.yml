@@ -1,0 +1,13 @@
+---
+- name: Optimize system limit
+  copy:
+    src: limits.conf
+    dest: /etc/security/limits.conf
+
+- name: Optimize linux kernel
+  copy:
+    src: sysctl.conf
+    dest: /etc/sysctl.conf
+
+- name: Apply sysctl
+  shell: "sysctl -p"

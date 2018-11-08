@@ -1,0 +1,6 @@
+---
+
+- name: Mkdir base directory.
+  file: path="{{ item }}" state=directory
+  with_items:
+    - "{{ workplaces }}"

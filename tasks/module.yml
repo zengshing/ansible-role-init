@@ -1,0 +1,30 @@
+---
+- name: Check nf_conntrack module has loaded.
+  shell: "lsmod |grep conntrack|wc -l"
+  register: conntrack_state
+
+- name: Load nf_conntrack moduel to kernel
+  modprobe: "name=ip_conntrack state=present"
+  when: conntrack_state.stdout|int == 0
+
+- name: Check bonding modules has loaded.
+  shell: "lsmod |grep bonding|wc -l"
+  register: bonding_state
+
+- name: Load bonding modules
+  shell: "modprobe bonding mode=4 miimon=100"
+  when: bonding_state.stdout|int == 0
+
+- name: Check 8021q modules has loaded.
+  shell: "lsmod |grep 8021q|wc -l"
+  register: 8021q_state
+
+- name: Load vlan modules
+  shell: "modprobe 8021q"
+  when: 8021q_state.stdout|int == 0
+
+- name: Load bonding modules on Boot
+  shell: 'echo "bonding mode=4 miimon=100" >/etc/modules'
+
+- name: Load vlan modules on Boot
+  shell: 'echo 8021q >> /etc/modules'

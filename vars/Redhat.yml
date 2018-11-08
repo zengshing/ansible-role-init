@@ -1,0 +1,9 @@
+---
+__ntp_packages:
+  - ntp
+  - ntpdate
+  - ntp-doc
+__snmp_packages:
+  - snmpd
+  - snmp
+  - snmp-mibs-downloader

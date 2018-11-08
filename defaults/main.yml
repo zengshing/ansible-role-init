@@ -1,0 +1,53 @@
+---
+# defaults file for molecule-kvm
+ssh_login_grace_time: 30
+ssh_permit_root_login: "yes"
+ssh_max_auth_tries: 3
+ssh_password_authentication: "yes"
+ssh_listen_port: 22
+ssh_listen_address: 0.0.0.0
+ssh_client_alive_interval: 60
+ssh_client_alive_countmax: 3
+iptables_network_prefix: 24
+iptables_accept_rules_enable: true
+iptables_drop_rules_enable: true
+iptables_accept_rules:
+  - name: "manager"
+    targets: ["116.28.65.108/32", "112.90.177.108/32",
+              "121.9.13.176/28", "120.31.56.16/28",
+              "119.145.147.16/28", "116.28.65.249/32",
+              "121.201.60.66/32", "121.201.60.67/32 ",
+              "121.201.60.68/32", "121.201.60.69/32",
+              "119.145.147.88/32",
+              "112.73.72.5/32 -p tcp -m tcp --dport 8000:9000"]
+  - name: "xenapi"
+    targets: ["121.201.59.101/32", "121.201.59.102/32",
+              "121.201.48.146/32", "121.201.59.70/32"]
+  - name: "api nginx efly.cc"
+    targets: ["112.90.58.12/32",
+              "121.201.59.72/32 -p tcp -m tcp --dport 8000:9999",
+              "121.201.59.89/32 -p tcp -m tcp --dport 8000:9999"]
+  - name: "ntp server"
+    targets: ["121.201.95.220/32"]
+  - name: "preoline && online keepalived"
+    targets: ["121.201.48.131/32", "121.201.48.132/32",
+              "121.201.48.133/32"]
+  - name: "ansible master"
+    targets: ["121.201.127.156/32"]
+iptables_drop_rules:
+  - name: "api nginx efly.cc"
+    targets: ["0.0.0.0/0 -p tcp -m tcp --dport 8080",
+              "0.0.0.0/0 -p tcp -m tcp --dport 9999"]
+dns_server_master: "114.114.114.114"
+dns_server_backup: "223.5.5.5"
+datacenter_name: Test_pool1
+password_reset: false
+password: $6$0.oMg65q85TO2J7X$gMWYQ3LhjBwwciX44kfRFIakVsSWTklu/ZScV0tMe4ja3pEw/GB4U1rkMClvfGKb1yCOl08NCf.dikwN1V3IQ0
+# api
+api_ip: "10.10.250.253"
+workplace:
+  - /opt/ECloud
+  - /opt/ECloud/kvm-console-proxy
+  - /opt/ECloud/kvm-console-proxy/nginx
+  - /opt/ECloud/software
+software_dir: /opt/ECloud/software/

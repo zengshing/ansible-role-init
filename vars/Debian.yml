@@ -1,0 +1,11 @@
+---
+
+__snmp_packages:
+  - snmpd
+  - snmp
+  - snmp-mibs-downloader
+__snmp_daemon: snmp
+__openssh_packages:
+  - openssh-client
+  - openssh-server
+__openssh_daemon: ssh

@@ -1,0 +1,21 @@
+---
+- name: Include OS-specific variables.
+  include_vars: "{{ ansible_os_family }}.yml"
+
+- name: Define snmp_packages.
+  set_fact:
+    snmp_packages: "{{ __snmp_packages | list }}"
+  when: snmp_packages is not defined
+
+- name: Define snmp_daemon.
+  set_fact:
+    snmp_daemon: "{{ __snmp_daemon }}"
+  when: snmp_daemon is not defined
+
+- name: Define opensssh_packages.
+  set_fact:
+    openssh_packages: "{{ __openssh_packages |list }}"
+
+- name: Define openssh_daemon.
+  set_fact:
+    openssh_daemon: "{{ __openssh_daemon }}"
