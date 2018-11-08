@@ -1,4 +1,5 @@
 ---
+__openssh_daemon: sshd
 __ntp_packages:
   - ntp
   - ntpdate

@@ -2,10 +2,10 @@
 
 - name: Reconfigure sshd
   template:
-    src: "{{ ansible_distribution }}"_sshd_config.j2
+    src: "{{ ansible_distribution }}_sshd_config.j2"
     dest: /etc/ssh/sshd_config
 
 - name: restart sshd
   service:
-    name: sshd
+    name: "{{ openssh_daemon }}"
     state: restarted

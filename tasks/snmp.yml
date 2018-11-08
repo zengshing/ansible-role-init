@@ -6,7 +6,7 @@
 - name: Install snmp
   apt: "name={{ item }} state=present"
   with_items:
-    - {{ snmp_packages }}
+    - "{{ snmp_packages }}"
   when: snmp_installed.stat.exists == false
 
 - name: Start and enable snmp service
