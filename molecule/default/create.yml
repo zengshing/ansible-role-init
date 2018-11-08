@@ -31,7 +31,7 @@
         force: "{{ item.item.force | default(True) }}"
       with_items: "{{ platforms.results }}"
       when: |
-           (platforms.changed or 
+           (platforms.changed or
             docker_images.results | map(attribute='images') | select('equalto', []) | list | count >= 0)
 
     - name: Create molecule instance(s)
